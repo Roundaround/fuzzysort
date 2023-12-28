@@ -169,7 +169,6 @@ async function tests() {
     test('noodle monster', 'nomon', null, 'qrs')
     test('noodle monster '.repeat(100), null, 'a')
     test('APPLES', 'app', 'l', 'E')
-    test('C:/users/farzher/dropbox/someotherfolder/pocket rumble refactor/Run.bat', 'po', 'po ru', 'pr', 'prrun', 'ocket umble')
     test('123abc', '12', '1', 'a', null, 'cc')
     test('Thoug ht', 'ht', 'hh')
     test('az bx cyy y', 'az', 'ab', 'ay', 'ax', 'ayy')
@@ -232,9 +231,6 @@ async function tests() {
     fuzzysort.go('', ['empty search test'])
     fuzzysort.go('empty target test', [''])
     fuzzysort.go('', [''])
-
-    var results = fuzzysort.go('farzher', [{yes:'farzher', no:'no'}], {keys:['yes', 'no']})
-    assert(!!results[0].obj)
   }
 }
 
@@ -367,16 +363,6 @@ async function benchmarks() {
     }
   }, config)
 
-  bench('tricky', function() {
-    fuzzysort.single('prrun', 'C:/users/farzher/dropbox/someotherfolder/pocket rumble refactor/Run.bat')
-  }, config)
-  bench('tricky space', function() {
-    fuzzysort.single('pr run', 'C:/users/farzher/dropbox/someotherfolder/pocket rumble refactor/Run.bat')
-  }, config)
-  bench('tricky lot of space', function() {
-    fuzzysort.single('pr run      e     e e e        e      e e ee         e     e', 'C:/users/farzher/dropbox/someotherfolder/pocket rumble refactor/Run.bat')
-  }, config)
-
   bench('go prepared spaces', function() {
     fuzzysort.go('n n  n    n     e', testdata_prepared.ue4_files)
     fuzzysort.go(' e ',               testdata_prepared.ue4_files)
@@ -416,9 +402,6 @@ async function benchmarks() {
 
   bench('huge nomatch', function() {
     fuzzysort.single('xxx', 'noodle monster noodle monster noodle monster noodle monster noodle monster noodle monster noodle monster noodle monster noodle monster noodle monster')
-  }, config)
-  bench('tricky', function() {
-    fuzzysort.single('prrun', 'C:/users/farzher/dropbox/someotherfolder/pocket rumble refactor/Run.bat')
   }, config)
   bench('small', function() {
     fuzzysort.single('al', 'alexstrasa')
@@ -483,12 +466,9 @@ async function bench(name, code, {benchtime=2000}={}) {
   function getavg(a) {let sum = 0; for(const x of a) sum += x; return sum/a.length }
 }
 function bench_speeddiff(name, hz) {
-  // fuzzysort 2.0.2
+  // fuzzysort 2.0.5
   var baseline = `
     highlight x 635.22 ops/sec -1.19% | 62 runs sampled
-    tricky x 3,032,593 ops/sec -18.11% | 13 runs sampled
-    tricky space x 942,114 ops/sec -35.39% | 14 runs sampled
-    tricky lot of space x 847,304 ops/sec -18.54% | 13 runs sampled
     go prepared spaces x 193.00 ops/sec -4.08% | 9 runs sampled
     go key spaces x 136.29 ops/sec -2.45% | 28 runs sampled
     go prepared x 404.49 ops/sec +2.29% | 10 runs sampled
@@ -497,10 +477,28 @@ function bench_speeddiff(name, hz) {
     go keys x 182.24 ops/sec +9.19% | 20 runs sampled
     go str x 250.21 ops/sec +8.5% | 8 runs sampled
     huge nomatch x 53,612,811 ops/sec +0.1% | 125 runs sampled
-    tricky x 3,208,152 ops/sec -13.37% | 12 runs sampled
     small x 6,237,592 ops/sec +0.22% | 16 runs sampled
     somematch x 17,516,025 ops/sec -8.73% | 26 runs sampled
   `
+
+  // // fuzzysort 2.0.2
+  // var baseline = `
+  //   highlight x 635.22 ops/sec -1.19% | 62 runs sampled
+  //   tricky x 3,032,593 ops/sec -18.11% | 13 runs sampled
+  //   tricky space x 942,114 ops/sec -35.39% | 14 runs sampled
+  //   tricky lot of space x 847,304 ops/sec -18.54% | 13 runs sampled
+  //   go prepared spaces x 193.00 ops/sec -4.08% | 9 runs sampled
+  //   go key spaces x 136.29 ops/sec -2.45% | 28 runs sampled
+  //   go prepared x 404.49 ops/sec +2.29% | 10 runs sampled
+  //   go prepared key x 335.53 ops/sec +3.25% | 10 runs sampled
+  //   go key x 219.76 ops/sec +7.76% | 9 runs sampled
+  //   go keys x 182.24 ops/sec +9.19% | 20 runs sampled
+  //   go str x 250.21 ops/sec +8.5% | 8 runs sampled
+  //   huge nomatch x 53,612,811 ops/sec +0.1% | 125 runs sampled
+  //   tricky x 3,208,152 ops/sec -13.37% | 12 runs sampled
+  //   small x 6,237,592 ops/sec +0.22% | 16 runs sampled
+  //   somematch x 17,516,025 ops/sec -8.73% | 26 runs sampled
+  // `
 
   // // fuzzysort 2.0
   // var baseline = `

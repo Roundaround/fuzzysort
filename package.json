@@ -1,8 +1,8 @@
 {
 
   "name"        : "fuzzysort",
-  "version"     : "2.0.4",
-  "author"      : "farzher",
+  "version"     : "2.0.5",
+  "author"      : "Roundaround",
   "license"     : "MIT",
   "description" : "Fast SublimeText-like fuzzy search for JavaScript",
 
@@ -10,7 +10,7 @@
 
   "repository": {
     "type" : "git",
-    "url"  : "https://github.com/farzher/fuzzysort.git"
+    "url"  : "https://github.com/roundaround/fuzzysort.git"
   },
 
   "main": "fuzzysort.js",
@@ -20,7 +20,7 @@
     "test-min" : "node test/test.js min",
 
     "//"       : "depends on uglify-js v3.17.4 being installed globally",
-    "minify"   : "uglifyjs fuzzysort.js -o fuzzysort.min.js -m -c --mangle-props keep_quoted --comments /farzher/"
+    "minify"   : "uglifyjs fuzzysort.js -o fuzzysort.min.js -m -c --mangle-props keep_quoted --comments /roundaround/"
   },
 
   "files": [

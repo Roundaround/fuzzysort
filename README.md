@@ -1,4 +1,4 @@
-# [fuzzysort](https://raw.github.com/farzher/fuzzysort/master/fuzzysort.js)
+# [fuzzysort](https://raw.github.com/roundaround/fuzzysort/main/fuzzysort.js)
 
 Fast, Tiny, & Good SublimeText-like fuzzy search for JavaScript.
 
@@ -6,13 +6,13 @@ Sublime's fuzzy search is... sublime. I wish everything used it. So here's an op
 
 
 
-## [Demo](https://rawgit.com/farzher/fuzzysort/master/test/test.html)
+## [Demo](https://rawgit.com/roundaround/fuzzysort/main/test/test.html)
 
 - **Fast** - **1ms** to search **13,000** files.
 - **Tiny** - 1 file, **5kb**. 0 dependencies.
 - **Good** - clean api + sorts results well.
 
-https://rawgit.com/farzher/fuzzysort/master/test/test.html
+https://rawgit.com/roundaround/fuzzysort/main/test/test.html
 
 ![](https://i.imgur.com/THbQ08n.gif)
 
@@ -25,7 +25,7 @@ https://rawgit.com/farzher/fuzzysort/master/test/test.html
 ## Installation Node
 
 ```sh
-npm install fuzzysort
+npm install roundaround/fuzzysort
 ```
 ```js
 const fuzzysort = require('fuzzysort')
@@ -38,7 +38,7 @@ import fuzzysort from 'fuzzysort'
 ## Installation Browser
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/fuzzysort@2.0.4/fuzzysort.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/roundaround/fuzzysort@2.0.5/fuzzysort.min.js"></script>
 ```
 
 
@@ -150,6 +150,10 @@ bestResult.obj.title // 'Google Chrome'
 
 
 ### Changelog
+
+#### v2.0.5
+- Forked from farzher/fuzzysort#master (v2.0.4)
+- Removed easter egg
 
 #### v2.0.0
 - Added new behavior when your search contains spaces!
